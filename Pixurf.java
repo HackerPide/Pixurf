@@ -33,6 +33,7 @@ public class Pixurf extends javax.swing.JFrame {
     double hhTemp;             // Highest height input
     double tempH;              // Free double variable
     String tempS;              // String to write to text areas
+    boolean select;            // Checkbox state
     int num1man;               // Number of pixurfs found
     int num2man;               // Number of pixurfs found
     int num3man;               // Number of pixurfs found
@@ -76,6 +77,20 @@ public class Pixurf extends javax.swing.JFrame {
         {40.91, 0, 1},
         {39.63, 1, 1},
         {38.30, 0, 0},
+        {36.92, 1, 0},
+        {35.50, 0, 1},
+        {34.02, 1, 0},
+        {32.50, 0, 0},
+        {30.93, 1, 0},
+        {29.31, 0, 0},
+        {27.64, 1, 0},
+        {25.92, 0, 0},
+        {24.16, 1, 1},
+        {22.34, 0, 0},
+        {20.48, 1, 1},
+        {18.56, 0, 0},
+        {16.60, 1, 0},
+        {14.59, 0, 0},
     };
     
     // Crouch jump height list
@@ -108,12 +123,27 @@ public class Pixurf extends javax.swing.JFrame {
         {49.91, 0, 1},
         {48.63, 1, 1},
         {47.30, 0, 0},
+        {45.92, 1, 0},
+        {44.50, 0, 1},
+        {43.02, 1, 0},
+        {41.50, 0, 0},
+        {39.93, 1, 0},
+        {38.31, 0, 0},
+        {36.64, 1, 0},
+        {34.92, 0, 0},
+        {33.16, 1, 1},
+        {31.34, 0, 0},
+        {29.48, 1, 1},
+        {27.56, 0, 0},
+        {25.60, 1, 0},
+        {23.59, 0, 0},
     };
     double npLength = normalJH.length;
     double cpLength = crouchJH.length;
     
     
     public static void main(String[] args) {
+        // TODO code application logic here
         new Pixurf().setVisible(true);
     }
    
@@ -147,6 +177,30 @@ public class Pixurf extends javax.swing.JFrame {
         fiveTxt.setText("");
         fiveCrouchTxt.setText("");
         five2CrouchTxt.setText("");
+        numTotal = 0;
+        num1man = 0;
+        num2man = 0;
+        num3man = 0;
+        num4man = 0;
+        num5man = 0;        
+    }
+    
+    void resetCaret(){
+        oneNormalTxt.setCaretPosition(0);
+        oneCrouchTxt.setCaretPosition(0);
+        twoNormalTxt.setCaretPosition(0);
+        twoCrouchTxt.setCaretPosition(0);
+        twoWalkTxt.setCaretPosition(0);
+        twoWalkCrouchTxt.setCaretPosition(0);
+        threeTxt.setCaretPosition(0);
+        threeCrouchTxt.setCaretPosition(0);
+        three2CrouchTxt.setCaretPosition(0);
+        fourTxt.setCaretPosition(0);
+        fourCrouchTxt.setCaretPosition(0);
+        four2CrouchTxt.setCaretPosition(0);
+        fiveTxt.setCaretPosition(0);
+        fiveCrouchTxt.setCaretPosition(0);
+        five2CrouchTxt.setCaretPosition(0);
         numTotal = 0;
         num1man = 0;
         num2man = 0;
@@ -261,31 +315,17 @@ public class Pixurf extends javax.swing.JFrame {
         inputLabel2 = new javax.swing.JLabel();
         resultLabel = new javax.swing.JLabel();
         numLabel = new javax.swing.JLabel();
+        tickCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pixel Surf Calculator   ");
 
         wfField.setFocusCycleRoot(true);
-        wfField.setNextFocusableComponent(lhField);
-        wfField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wfFieldActionPerformed(evt);
-            }
-        });
+        wfField.setNextFocusableComponent(hhField);
 
-        lhField.setNextFocusableComponent(hhField);
-        lhField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lhFieldActionPerformed(evt);
-            }
-        });
+        lhField.setNextFocusableComponent(calcButton);
 
-        hhField.setNextFocusableComponent(calcButton);
-        hhField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hhFieldActionPerformed(evt);
-            }
-        });
+        hhField.setNextFocusableComponent(lhField);
 
         calcButton.setText("Calculate");
         calcButton.setNextFocusableComponent(resetButton);
@@ -305,6 +345,7 @@ public class Pixurf extends javax.swing.JFrame {
         oneNormalTxt.setEditable(false);
         oneNormalTxt.setColumns(20);
         oneNormalTxt.setRows(5);
+        oneNormalTxt.setAutoscrolls(false);
         jScrollPane1.setViewportView(oneNormalTxt);
 
         jTabbedPane2.addTab("Normal Jump", jScrollPane1);
@@ -312,6 +353,7 @@ public class Pixurf extends javax.swing.JFrame {
         oneCrouchTxt.setEditable(false);
         oneCrouchTxt.setColumns(20);
         oneCrouchTxt.setRows(5);
+        oneCrouchTxt.setAutoscrolls(false);
         jScrollPane2.setViewportView(oneCrouchTxt);
 
         jTabbedPane2.addTab("Crouch Jump", jScrollPane2);
@@ -321,6 +363,7 @@ public class Pixurf extends javax.swing.JFrame {
         twoNormalTxt.setEditable(false);
         twoNormalTxt.setColumns(20);
         twoNormalTxt.setRows(5);
+        twoNormalTxt.setAutoscrolls(false);
         jScrollPane3.setViewportView(twoNormalTxt);
 
         jTabbedPane3.addTab("Normal Jump", jScrollPane3);
@@ -328,6 +371,7 @@ public class Pixurf extends javax.swing.JFrame {
         twoCrouchTxt.setEditable(false);
         twoCrouchTxt.setColumns(20);
         twoCrouchTxt.setRows(5);
+        twoCrouchTxt.setAutoscrolls(false);
         jScrollPane4.setViewportView(twoCrouchTxt);
 
         jTabbedPane3.addTab("Crouch Jump", jScrollPane4);
@@ -335,6 +379,7 @@ public class Pixurf extends javax.swing.JFrame {
         twoWalkTxt.setEditable(false);
         twoWalkTxt.setColumns(20);
         twoWalkTxt.setRows(5);
+        twoWalkTxt.setAutoscrolls(false);
         jScrollPane5.setViewportView(twoWalkTxt);
 
         jTabbedPane3.addTab("Walk Off", jScrollPane5);
@@ -342,6 +387,7 @@ public class Pixurf extends javax.swing.JFrame {
         twoWalkCrouchTxt.setEditable(false);
         twoWalkCrouchTxt.setColumns(20);
         twoWalkCrouchTxt.setRows(5);
+        twoWalkCrouchTxt.setAutoscrolls(false);
         jScrollPane6.setViewportView(twoWalkCrouchTxt);
 
         jTabbedPane3.addTab("Walk Off Crouch", jScrollPane6);
@@ -351,6 +397,7 @@ public class Pixurf extends javax.swing.JFrame {
         threeTxt.setEditable(false);
         threeTxt.setColumns(20);
         threeTxt.setRows(5);
+        threeTxt.setAutoscrolls(false);
         jScrollPane7.setViewportView(threeTxt);
 
         jTabbedPane4.addTab("Boost", jScrollPane7);
@@ -358,6 +405,7 @@ public class Pixurf extends javax.swing.JFrame {
         threeCrouchTxt.setEditable(false);
         threeCrouchTxt.setColumns(20);
         threeCrouchTxt.setRows(5);
+        threeCrouchTxt.setAutoscrolls(false);
         jScrollPane8.setViewportView(threeCrouchTxt);
 
         jTabbedPane4.addTab("Boost 1 Crouch", jScrollPane8);
@@ -365,6 +413,7 @@ public class Pixurf extends javax.swing.JFrame {
         three2CrouchTxt.setEditable(false);
         three2CrouchTxt.setColumns(20);
         three2CrouchTxt.setRows(5);
+        three2CrouchTxt.setAutoscrolls(false);
         jScrollPane9.setViewportView(three2CrouchTxt);
 
         jTabbedPane4.addTab("Boost 2 Crouch", jScrollPane9);
@@ -374,6 +423,7 @@ public class Pixurf extends javax.swing.JFrame {
         fourTxt.setEditable(false);
         fourTxt.setColumns(20);
         fourTxt.setRows(5);
+        fourTxt.setAutoscrolls(false);
         jScrollPane10.setViewportView(fourTxt);
 
         jTabbedPane5.addTab("Boost", jScrollPane10);
@@ -381,6 +431,7 @@ public class Pixurf extends javax.swing.JFrame {
         fourCrouchTxt.setEditable(false);
         fourCrouchTxt.setColumns(20);
         fourCrouchTxt.setRows(5);
+        fourCrouchTxt.setAutoscrolls(false);
         jScrollPane11.setViewportView(fourCrouchTxt);
 
         jTabbedPane5.addTab("Boost 1 Crouch", jScrollPane11);
@@ -388,6 +439,7 @@ public class Pixurf extends javax.swing.JFrame {
         four2CrouchTxt.setEditable(false);
         four2CrouchTxt.setColumns(20);
         four2CrouchTxt.setRows(5);
+        four2CrouchTxt.setAutoscrolls(false);
         jScrollPane12.setViewportView(four2CrouchTxt);
 
         jTabbedPane5.addTab("Boost 2 Crouch", jScrollPane12);
@@ -397,6 +449,7 @@ public class Pixurf extends javax.swing.JFrame {
         fiveTxt.setEditable(false);
         fiveTxt.setColumns(20);
         fiveTxt.setRows(5);
+        fiveTxt.setAutoscrolls(false);
         jScrollPane13.setViewportView(fiveTxt);
 
         jTabbedPane6.addTab("Boost", jScrollPane13);
@@ -404,6 +457,7 @@ public class Pixurf extends javax.swing.JFrame {
         fiveCrouchTxt.setEditable(false);
         fiveCrouchTxt.setColumns(20);
         fiveCrouchTxt.setRows(5);
+        fiveCrouchTxt.setAutoscrolls(false);
         jScrollPane14.setViewportView(fiveCrouchTxt);
 
         jTabbedPane6.addTab("Boost 1 Crouch", jScrollPane14);
@@ -411,17 +465,18 @@ public class Pixurf extends javax.swing.JFrame {
         five2CrouchTxt.setEditable(false);
         five2CrouchTxt.setColumns(20);
         five2CrouchTxt.setRows(5);
+        five2CrouchTxt.setAutoscrolls(false);
         jScrollPane15.setViewportView(five2CrouchTxt);
 
         jTabbedPane6.addTab("Boost 2 Crouch", jScrollPane15);
 
         jTabbedPane1.addTab("5 Man", jTabbedPane6);
 
-        inputLabel.setText("Enter wireframe height: ");
+        inputLabel.setText("Enter Wireframe Height: ");
 
-        inputLabel1.setText("Enter lowest height: ");
+        inputLabel1.setText("Enter Lowest Height: ");
 
-        inputLabel2.setText("Enter highest height: ");
+        inputLabel2.setText("Enter Highest Height: ");
 
         resultLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resultLabel.setText(" ");
@@ -429,39 +484,43 @@ public class Pixurf extends javax.swing.JFrame {
         numLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numLabel.setText(" ");
 
+        tickCheckBox.setText("Show 64tick only");
+        tickCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTabbedPane1)
+                    .addComponent(numLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(inputLabel2)
-                        .addGap(56, 367, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTabbedPane1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(inputLabel)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(inputLabel1)
-                                        .addGap(39, 39, 39)))
+                                    .addComponent(inputLabel)
+                                    .addComponent(inputLabel2)))
+                            .addComponent(inputLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(hhField, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                    .addComponent(lhField, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(wfField, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(18, 59, Short.MAX_VALUE)
+                                .addGap(18, 18, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(calcButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(39, 39, 39))
-                            .addComponent(resultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(numLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(23, 23, 23))))
+                                    .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lhField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tickCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18))
+                    .addComponent(resultLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,13 +532,14 @@ public class Pixurf extends javax.swing.JFrame {
                     .addComponent(calcButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputLabel1)
-                    .addComponent(lhField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resetButton))
+                    .addComponent(resetButton)
+                    .addComponent(hhField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputLabel2)
-                    .addComponent(hhField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lhField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputLabel1)
+                    .addComponent(tickCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(resultLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -491,7 +551,7 @@ public class Pixurf extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         resetFields();
         resetTextAreas();
@@ -501,7 +561,9 @@ public class Pixurf extends javax.swing.JFrame {
         if (!wfField.getText().equals("")
                 && !lhField.getText().equals("")
                 && !hhField.getText().equals("")){
+            
             resetTextAreas();
+            select = tickCheckBox.isSelected();
             wframeTemp = Double.parseDouble(wfField.getText());
             lhTemp = Double.parseDouble(lhField.getText());
             hhTemp = Double.parseDouble(hhField.getText());
@@ -509,7 +571,8 @@ public class Pixurf extends javax.swing.JFrame {
             tempS = "";
             for (i = 0; i < npLength; i++){
                 tempH = singlePersonJump(wframeTemp, normalJH[i][0]);
-                if (lhTemp <= tempH && tempH <= hhTemp){
+                if ((!select || !(normalJH[i][1] == 1)) 
+                        && lhTemp <= tempH && tempH <= hhTemp){
                     tempS += String.format("%.2f", tempH);
                     if (normalJH[i][1] == 1)
                         tempS += " - 128tick only";
@@ -524,7 +587,8 @@ public class Pixurf extends javax.swing.JFrame {
             tempS = "";
             for (i = 0; i < cpLength; i++){
                 tempH = singlePersonJump(wframeTemp, crouchJH[i][0]);
-                if (lhTemp <= tempH && tempH <= hhTemp){
+                if ((!select || !(normalJH[i][1] == 1)) 
+                        && lhTemp <= tempH && tempH <= hhTemp){
                     tempS += String.format("%.2f", tempH);
                     if (crouchJH[i][1] == 1)
                         tempS += " - 128tick only";
@@ -539,7 +603,8 @@ public class Pixurf extends javax.swing.JFrame {
             tempS = "";
             for (i = 0; i < npLength; i++){
                 tempH = twoManJump(wframeTemp, normalJH[i][0]);
-                if (lhTemp <= tempH && tempH <= hhTemp){
+                if ((!select || !(normalJH[i][1] == 1)) 
+                        && lhTemp <= tempH && tempH <= hhTemp){
                     tempS += String.format("%.2f", tempH);
                     if (normalJH[i][1] == 1)
                         tempS += " - 128tick only";
@@ -554,7 +619,8 @@ public class Pixurf extends javax.swing.JFrame {
             tempS = "";
             for (i = 0; i < cpLength; i++){
                 tempH = twoManJump(wframeTemp, crouchJH[i][0]);
-                if (lhTemp <= tempH && tempH <= hhTemp){
+                if ((!select || !(normalJH[i][1] == 1)) 
+                        && lhTemp <= tempH && tempH <= hhTemp){
                     tempS += String.format("%.2f", tempH);
                     if (crouchJH[i][1] == 1)
                         tempS += " - 128tick only";
@@ -592,7 +658,7 @@ public class Pixurf extends javax.swing.JFrame {
             
             tempS = "";
             tempH = threeManBoost1Crouch(wframeTemp);
-            if (lhTemp <= tempH && tempH <= hhTemp){
+            if (lhTemp - povH + povCH <= tempH && tempH <= hhTemp){
                 tempS += String.format("%.2f", tempH) + "\n";
                 num3man++;
             }
@@ -616,7 +682,7 @@ public class Pixurf extends javax.swing.JFrame {
             
             tempS = "";
             tempH = fourManBoost1Crouch(wframeTemp);
-            if (lhTemp <= tempH && tempH <= hhTemp){
+            if (lhTemp - povH + povCH <= tempH && tempH <= hhTemp){
                 tempS += String.format("%.2f", tempH) + "\n";
                 num4man++;
             }
@@ -640,7 +706,7 @@ public class Pixurf extends javax.swing.JFrame {
             
             tempS = "";
             tempH = fiveManBoost1Crouch(wframeTemp);
-            if (lhTemp <= tempH && tempH <= hhTemp){
+            if (lhTemp - povH + povCH <= tempH && tempH <= hhTemp){
                 tempS += String.format("%.2f", tempH) + "\n";
                 num5man++;
             }
@@ -656,12 +722,14 @@ public class Pixurf extends javax.swing.JFrame {
             
             numTotal = num1man + num2man + num3man + num4man + num5man;
             
-            resultLabel.setText("Found " + numTotal + " pixurfs");
+            resultLabel.setText("Found " + numTotal + " Results");
             numLabel.setText("Solo: " + num1man + " ||"
                                 + " 2 Man: " + num2man + " ||"
                                 + " 3 Man: " + num3man + " ||"
                                 + " 4 Man: " + num4man + " ||"
                                 + " 5 Man: " + num5man);
+            
+            resetCaret();
         }
         else{
             resultLabel.setText("Please enter all values");
@@ -711,6 +779,7 @@ public class Pixurf extends javax.swing.JFrame {
     private javax.swing.JTextArea three2CrouchTxt;
     private javax.swing.JTextArea threeCrouchTxt;
     private javax.swing.JTextArea threeTxt;
+    private javax.swing.JCheckBox tickCheckBox;
     private javax.swing.JTextArea twoCrouchTxt;
     private javax.swing.JTextArea twoNormalTxt;
     private javax.swing.JTextArea twoWalkCrouchTxt;
