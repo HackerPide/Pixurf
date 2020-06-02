@@ -658,7 +658,7 @@ public class Pixurf extends javax.swing.JFrame {
             
             tempS = "";
             tempH = threeManBoost1Crouch(wframeTemp);
-            if (lhTemp - povH + povCH <= tempH && tempH <= hhTemp){
+            if (lhTemp <= tempH && tempH <= hhTemp){
                 tempS += String.format("%.2f", tempH) + "\n";
                 num3man++;
             }
@@ -682,7 +682,7 @@ public class Pixurf extends javax.swing.JFrame {
             
             tempS = "";
             tempH = fourManBoost1Crouch(wframeTemp);
-            if (lhTemp - povH + povCH <= tempH && tempH <= hhTemp){
+            if (lhTemp <= tempH && tempH <= hhTemp){
                 tempS += String.format("%.2f", tempH) + "\n";
                 num4man++;
             }
@@ -706,7 +706,7 @@ public class Pixurf extends javax.swing.JFrame {
             
             tempS = "";
             tempH = fiveManBoost1Crouch(wframeTemp);
-            if (lhTemp - povH + povCH <= tempH && tempH <= hhTemp){
+            if (lhTemp <= tempH && tempH <= hhTemp){
                 tempS += String.format("%.2f", tempH) + "\n";
                 num5man++;
             }
