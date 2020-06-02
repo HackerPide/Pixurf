@@ -49,7 +49,7 @@ public class Pixurf extends javax.swing.JFrame {
     
     // Normal jump height list
     double[][] normalJH = {
-        {56.99, 0, 0},
+        {57.00, 0, 0},
         {56.94, 0, 0},
         {56.83, 1, 0},
         {56.68, 0, 1},
@@ -95,7 +95,7 @@ public class Pixurf extends javax.swing.JFrame {
     
     // Crouch jump height list
     double[][] crouchJH = {
-        {65.99, 0, 0},
+        {66.00, 0, 0},
         {65.94, 0, 0},
         {65.83, 1, 0},
         {65.68, 0, 1},
