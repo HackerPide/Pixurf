@@ -329,14 +329,8 @@ public class Pixurf extends javax.swing.JFrame {
         setTitle("Pixel Surf Calculator   ");
 
         wfField.setFocusCycleRoot(true);
-        wfField.setNextFocusableComponent(hhField);
-
-        lhField.setNextFocusableComponent(calcButton);
-
-        hhField.setNextFocusableComponent(lhField);
 
         calcButton.setText("Calculate");
-        calcButton.setNextFocusableComponent(resetButton);
         calcButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calcButtonActionPerformed(evt);
