@@ -97,31 +97,15 @@
     <Component class="javax.swing.JTextField" name="wfField">
       <Properties>
         <Property name="focusCycleRoot" type="boolean" value="true"/>
-        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="hhField"/>
-        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="lhField">
-      <Properties>
-        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="calcButton"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="hhField">
-      <Properties>
-        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="lhField"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="calcButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Calculate"/>
-        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="resetButton"/>
-        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="calcButtonActionPerformed"/>
